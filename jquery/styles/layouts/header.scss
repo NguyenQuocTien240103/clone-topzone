@@ -1,0 +1,15 @@
+#header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: $header-height;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg {
+    .navbar-collapse {
+      padding: 0 !important;
+    }
+  } 
+}

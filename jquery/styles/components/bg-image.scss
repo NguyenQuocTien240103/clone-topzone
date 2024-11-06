@@ -1,4 +1,4 @@
-$img: 'https://cdnv2.tgdd.vn/webmwg/2024/tz/images/icon-topzone.webp';
+$img: 'http://localhost:1337/uploads/icon_topzone_122ff86a71.webp';
 
 .bg_img {
   background-image: url($img);
@@ -44,4 +44,38 @@ $img: 'https://cdnv2.tgdd.vn/webmwg/2024/tz/images/icon-topzone.webp';
     width: 36px;
     height: 32px;
   }
+}
+
+*[class^='iconsocial-'],
+*[class*='iconsocial-'] {
+  background-image: url(//cdnv2.tgdd.vn/webmwg/2024/tz/images/common/icon_socical.webp);
+  background-repeat: no-repeat;
+  display: inline-block;
+  line-height: 30px;
+  vertical-align: middle;
+  background-size: 120px 90px;
+}
+
+.iconsocial-facebook {
+  background-position: -45px 0;
+  width: 33px;
+  height: 33px;
+}
+
+.iconsocial-youtube {
+  background-position: 0 0;
+  width: 33px;
+  height: 33px;
+}
+
+.iconsocial-zalo {
+  background-position: -85px 0;
+  width: 33px;
+  height: 33px;
+}
+
+.icon-cart {
+  background-position: -239px -11px;
+  width: 14px;
+  height: 17px;
 }
