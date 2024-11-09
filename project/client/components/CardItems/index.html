@@ -1,0 +1,67 @@
+<script>
+    $(document).ready(function () {
+        const CategoryArr = [];
+        // Get all category
+        $.ajax({
+            url: "http://localhost:8081/api/category",
+            method: "GET",
+            dataType: "json",
+            success: function (res) {
+                const listCategory = res.data;
+                listCategory.forEach(item => {
+                    CategoryArr.push(item);
+                });
+
+                // Del content with #demo
+                $("#demo").empty();
+
+                // Thêm từng category vào #demo sau khi đã lấy được dữ liệu
+                CategoryArr.forEach(itemCategory => {
+                    const html = `
+                        <div class="box-slide">
+                            <h2 class="title-text">${itemCategory.name}</h2>
+                            <ul class="row" id="product-list-${itemCategory.id}">
+                            </ul>
+                        </div>`;
+
+                    $("#demo").append(html);
+
+                    // Call API get products by idCategory
+                    $.ajax({
+                        url: `http://localhost:8081/api/product/${itemCategory.id}`,
+                        method: "GET",
+                        dataType: "json",
+                        success: function (res) {
+                            const listProductFollowCategory = res.data;
+                            const productList = $(`#product-list-${itemCategory.id}`);
+
+                            // add product into tag ul
+                            listProductFollowCategory.slice(0, 4).forEach(itemProduct => {
+                                const productItem = `
+                                    <li class="col-12 col-sm-6 col-md-4 col-lg-3 bt-2">
+                                        <div class="card" style="width: 100%;">
+                                            <img class="card-img-top" src="${itemProduct.imageURL}"
+                                                alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-center">${itemProduct.name}</h5>
+                                                <p class="card-text">${itemProduct.price}đ</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                `;
+
+                                productList.append(productItem);
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Ajax error:', error);
+                        }
+                    });
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Ajax error:', error);
+            }
+        });
+    });
+</script>

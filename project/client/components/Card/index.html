@@ -1,0 +1,33 @@
+<div class="container d-flex justify-content-center mt-2 card-block" id="card_category">
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "http://localhost:8081/api/category",
+            method: "GET",
+            dataType: "json",
+            success: function (res) {
+                const listCategory = res.data;
+                $("#card_category").empty();
+                listCategory.forEach((item) => {
+                    console.log(item)
+                    const listItem = `
+                    <a href="pages/ProductDetail/index.html?product=${item.name}" style="text-decoration: none; color: inherit;">
+                        <div class="card" style="width: 12rem;">
+                            <img class="card-img-top" src="${item.imageURL}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">${item.name}</h5>
+                            </div>
+                        </div>
+                    </a>
+                    `;
+                    $("#card_category").append(listItem);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Ajax error:', error);
+            }
+        });
+    });
+</script>
